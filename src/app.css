@@ -15,3 +15,18 @@ code {
 .margin-40 {
   margin: 40px;
 }
+
+.header-logo {
+  text-decoration:none;
+  color: #737373;
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+  font-size: 70px;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.header-logo:hover {
+  color: #737373;
+}

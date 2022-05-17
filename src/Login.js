@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import bootstrap from 'bootstrap'
+import React from 'react'
 
 export default function Login() {
 
     const handleSubmit = (event) => {
+        event.preventDefault();
         fetch('https://student-json-api.lidemy.me/login', {
             method: 'POST',
             headers: {
@@ -26,23 +26,23 @@ export default function Login() {
     }
 
     return (
-        <div class="container ">
+        <div className="container ">
 
             <div className='row  d-flex justify-content-center align-items-center' style={{ height: "100vh" }} >
 
                 <div className='col-8 ' >
                     <form onSubmit={handleSubmit}>
-                        <div class="row margin-40">
-                            <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Username</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control form-control-lg" name="username" id="colFormLabelLg" placeholder="Enter Username" required />
+                        <div className="row margin-40">
+                            <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label-lg">Username</label>
+                            <div className="col-sm-10">
+                                <input type="text" className="form-control form-control-lg" name="username" id="colFormLabelLg" placeholder="Enter Username" required />
                             </div>
                         </div>
 
-                        <div class="row margin-40">
-                            <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Password</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control form-control-lg" name="password" id="colFormLabelLg" placeholder="Enter Password" required />
+                        <div className="row margin-40">
+                            <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label-lg">Password</label>
+                            <div className="col-sm-10">
+                                <input type="password" className="form-control form-control-lg" name="password" id="colFormLabelLg" placeholder="Enter Password" required />
                             </div>
                         </div>
 

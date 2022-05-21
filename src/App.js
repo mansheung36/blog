@@ -1,11 +1,18 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import Navigation from "./Navigation";
 import Content from "./Content";
 import Footer from "./Footer";
+import Home from './Home';
 import Login from './Login';
+import Register from './Register';
 
 
 function App() {
+
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    window.location.reload(false)
+  }
+
   return (
     <div>
 
@@ -18,20 +25,34 @@ function App() {
           <Link to="/" className='header-logo' >BLOG</Link>
         </h1>
 
-        <nav class="navbar navbar-light bg-light">
-          <div class="container-fluid row">
+        <nav className="navbar navbar-light bg-light">
+          <div className="container-fluid row">
             <span className='col d-flex justify-content-end '>
-              <button type="button" class="btn btn-outline-secondary mx-1">Sign Up</button>
-              <Link to="/login">
-                <button type="button" class="btn btn-outline-secondary mx-1">Login</button>
-              </Link>
+
+
+              {(localStorage.getItem('token') === null) && <div>
+                <Link to="/register">
+                  <button type="button" className="btn btn-outline-secondary mx-1">Sign Up</button>
+                </Link>
+
+                <Link to="/login">
+                  <button type="button" className="btn btn-outline-secondary mx-1">Login</button>
+                </Link>
+              </div>}
+
+              {(localStorage.getItem('token') !== null)
+                && <button type="button" className="btn btn-outline-secondary mx-1" onClick={handleLogout}>Logout</button>}
+
             </span>
           </div>
         </nav>
 
         <Routes>
-          
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
+
+
         </Routes>
       </BrowserRouter>
     </div>

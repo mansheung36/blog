@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { IsloggedInContext } from './IsloggedInContext';
 
 export default function Login() {
+
+    const { isLoggedIn, setIsLoggedIn } = useContext(IsloggedInContext)
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (localStorage.getItem('token') !== null) {
+        if (isLoggedIn) {
             navigate("/", { replace: true });
         }
     }, [])
@@ -30,7 +33,7 @@ export default function Login() {
 
                 if (data.ok) {
                     localStorage.setItem('token', data.token);
-                    alert('ok');
+                    setIsLoggedIn(true)
                     navigate("/", { replace: true });
                 } else {
                     alert(data.message)

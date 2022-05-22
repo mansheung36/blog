@@ -1,17 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { IsloggedInContext } from './IsloggedInContext';
 
 export default function Register() {
 
+    const { isLoggedIn, setIsLoggedIn } = useContext(IsloggedInContext)
     const navigate = useNavigate();
 
-
     useEffect(() => {
-        if (localStorage.getItem('token') !== null) {
+        if (isLoggedIn) {
             navigate("/", { replace: true });
         }
-
     }, [])
 
     const handleSubmit = (event) => {
@@ -31,12 +31,11 @@ export default function Register() {
             .then(data => {
                 if (data.ok) {
                     localStorage.setItem('token', data.token);
-                    alert('ok');
+                    setIsLoggedIn(true)
                     navigate("/", { replace: true });
                 } else {
                     alert(data.message)
                 }
-
             })
     }
 

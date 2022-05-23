@@ -6,6 +6,7 @@ import Login from './Login';
 import Register from './Register';
 import { IsloggedInContext } from './IsloggedInContext';
 import { useState } from 'react';
+import Portfolio from './Portfolio';
 
 
 function App() {
@@ -46,18 +47,26 @@ function App() {
                   </Link>
                 </div>}
 
-                {(isLoggedIn)
-                  && <button type="button" className="btn btn-outline-secondary mx-1" onClick={handleLogout}>Logout</button>}
+                {(isLoggedIn) && <div>
+
+                  <Link to="/portfolio">
+                    <button type="button" className="btn btn-outline-secondary mx-1">My Portfolio</button>
+                  </Link>
+
+                  <button type="button" className="btn btn-outline-secondary mx-1" onClick={handleLogout}>Logout</button>
+
+                </div>}
 
               </span>
             </div>
           </nav>
 
           <Routes>
+
             <Route path="/" element={<Home />}></Route>
             <Route path="/register" element={<Register />}></Route>
             <Route path="/login" element={<Login />}></Route>
-
+            <Route path="/portfolio" element={<Portfolio />}></Route>
 
           </Routes>
 
